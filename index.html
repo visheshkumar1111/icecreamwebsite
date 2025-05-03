@@ -7,35 +7,29 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
-  
-  <!-- AOS Animation CSS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- AOS (Animate on Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Open Sans', sans-serif;
       background: linear-gradient(to bottom right, #fff0f5, #ffe4e1);
       color: #333;
-      overflow-x: hidden;
     }
 
     nav {
       background: #ffffffdd;
-      backdrop-filter: blur(8px);
+      padding: 15px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 40px;
       position: sticky;
       top: 0;
       z-index: 10;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     nav .logo {
@@ -54,7 +48,6 @@
       text-decoration: none;
       font-weight: bold;
       color: #d81b60;
-      transition: 0.3s;
     }
 
     nav a:hover {
@@ -64,11 +57,11 @@
     .hero {
       background: url('pexels-tahir-shaw-50609-186980.jpg') center/cover no-repeat;
       height: 100vh;
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
+      position: relative;
     }
 
     .overlay {
@@ -135,7 +128,7 @@
     .gallery img {
       width: 300px;
       border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       transition: transform 0.4s ease;
     }
 
@@ -143,6 +136,48 @@
       transform: scale(1.05);
     }
 
+    /* Testimonials */
+    #testimonials {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .testimonial-slider {
+      position: relative;
+      height: 180px;
+      margin-top: 30px;
+    }
+
+    .testimonial {
+      position: absolute;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      background: #fff0f5;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .testimonial.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .testimonial p {
+      font-size: 1.2em;
+      font-style: italic;
+    }
+
+    .testimonial span {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #c2185b;
+    }
+
+    /* Contact Form */
     form {
       max-width: 600px;
       margin: auto;
@@ -166,7 +201,6 @@
       border-radius: 30px;
       font-size: 1.1em;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     button:hover {
@@ -198,6 +232,7 @@
     <div class="logo">🍨 Sweet Scoop</div>
     <ul>
       <li><a href="#menu">Flavours</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -216,6 +251,24 @@
     <div class="gallery">
       <img src="images.jpg" alt="Tropical Cone" data-aos="fade-up">
       <img src="pexels-photo-1362534.jpeg" alt="Sprinkle Cups" data-aos="fade-up" data-aos-delay="100">
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2 data-aos="fade-up">What Our Customers Say</h2>
+    <div class="testimonial-slider" data-aos="fade-up">
+      <div class="testimonial active">
+        <p>"The mango flavor took me back to my childhood summers in Shimla!"</p>
+        <span>- Rahul M.</span>
+      </div>
+      <div class="testimonial">
+        <p>"Absolutely the creamiest strawberry ice cream I’ve ever tasted. Divine!"</p>
+        <span>- Anjali R.</span>
+      </div>
+      <div class="testimonial">
+        <p>"So fresh, so flavorful! Their handcrafted cones are unmatched!"</p>
+        <span>- Priya D.</span>
+      </div>
     </div>
   </section>
 
@@ -238,13 +291,22 @@
     <p>© 2025 Sweet Scoop | Designed with ❤️ from Shimla & Noida</p>
   </footer>
 
-  <!-- AOS Script -->
+  <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init({ duration: 1000, once: true });</script>
+
+  <!-- Testimonial Slider Script -->
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
+    let index = 0;
+    const testimonials = document.querySelectorAll('.testimonial');
+
+    function rotateTestimonials() {
+      testimonials.forEach(t => t.classList.remove('active'));
+      testimonials[index].classList.add('active');
+      index = (index + 1) % testimonials.length;
+    }
+
+    setInterval(rotateTestimonials, 4000); // every 4 seconds
   </script>
 </body>
 </html>
