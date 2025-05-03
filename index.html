@@ -3,8 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sweet Scoop – Artisanal Ice Cream</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <title>Sweet Scoop – Artisan Ice Cream</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
+  
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -20,34 +26,34 @@
     }
 
     nav {
-      background: #ffffffd0;
+      background: #ffffffdd;
       backdrop-filter: blur(8px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 40px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     nav .logo {
       font-family: 'Pacifico', cursive;
       font-size: 2rem;
-      color: #ff4081;
+      color: #e91e63;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 25px;
+      gap: 20px;
     }
 
     nav a {
       text-decoration: none;
-      font-weight: 600;
-      color: #e91e63;
+      font-weight: bold;
+      color: #d81b60;
       transition: 0.3s;
     }
 
@@ -55,116 +61,86 @@
       color: #880e4f;
     }
 
-    header.hero {
-      background: url('hero.jpg') center/cover no-repeat;
+    .hero {
+      background: url('pexels-tahir-shaw-50609-186980.jpg') center/cover no-repeat;
       height: 100vh;
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: white;
-      position: relative;
     }
 
-    .hero::after {
-      content: "";
+    .overlay {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
     .hero-content {
+      position: relative;
       z-index: 2;
-      padding: 40px;
+      color: white;
     }
 
     .hero h1 {
-      font-size: 3.5em;
+      font-size: 3em;
       font-family: 'Pacifico', cursive;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 8px #000;
+      margin-bottom: 20px;
     }
 
     .hero p {
-      font-size: 1.3em;
+      font-size: 1.2em;
       margin-bottom: 25px;
     }
 
     .btn {
-      padding: 14px 30px;
-      background: #ff4081;
-      border: none;
+      padding: 12px 25px;
+      background-color: #f06292;
       color: white;
+      text-decoration: none;
       font-size: 1.1em;
       border-radius: 30px;
-      text-decoration: none;
-      transition: background 0.3s;
+      transition: background 0.3s ease;
     }
 
     .btn:hover {
-      background: #f50057;
+      background-color: #e91e63;
     }
 
     section {
-      padding: 70px 25px;
+      padding: 60px 20px;
       max-width: 1000px;
       margin: auto;
       text-align: center;
     }
 
     section h2 {
-      font-size: 2.8em;
+      font-size: 2.5em;
       color: #d81b60;
       margin-bottom: 20px;
       font-family: 'Pacifico', cursive;
-    }
-
-    section p {
-      font-size: 1.1em;
-      color: #444;
-      margin-bottom: 25px;
     }
 
     .gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 30px;
+      gap: 25px;
+      margin-top: 30px;
     }
 
     .gallery img {
       width: 300px;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       transition: transform 0.4s ease;
     }
 
     .gallery img:hover {
       transform: scale(1.05);
-    }
-
-    .testimonials {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .testimonial {
-      background: #fff0f5;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      font-style: italic;
-    }
-
-    .testimonial span {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-      color: #c2185b;
     }
 
     form {
@@ -206,94 +182,69 @@
     }
 
     @media(max-width: 768px) {
-      nav ul {
+      .gallery {
         flex-direction: column;
-        gap: 10px;
       }
-
-      .testimonials {
-        grid-template-columns: 1fr;
-      }
-
       .hero h1 {
-        font-size: 2.2em;
-      }
-
-      .hero p {
-        font-size: 1em;
+        font-size: 2em;
       }
     }
   </style>
 </head>
+
 <body>
 
   <nav>
     <div class="logo">🍨 Sweet Scoop</div>
     <ul>
-      <li><a href="#about">About</a></li>
       <li><a href="#menu">Flavours</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <header class="hero">
-    <div class="hero-content">
-      <h1>Indulge in the Coolest Treats</h1>
-      <p>Crafted with love, chilled to perfection.</p>
+    <div class="overlay"></div>
+    <div class="hero-content" data-aos="zoom-in">
+      <h1>Welcome to Sweet Scoop 🍨</h1>
+      <p>Chilled dreams, handcrafted in Shimla with love.</p>
       <a href="#menu" class="btn">Explore Flavours</a>
     </div>
   </header>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We are Sweet Scoop — a sibling-run ice cream paradise! From the snowy hills of Shimla to the buzzing streets of Noida, we blend freshness, fun, and flavor into every scoop we serve.</p>
-  </section>
-
   <section id="menu">
-    <h2>Our Flavours</h2>
+    <h2 data-aos="fade-up">Our Signature Flavours</h2>
     <div class="gallery">
-      <img src="icecream1.jpg" alt="Assorted Flavours">
-      <img src="icecream2.jpg" alt="Tropical Cone">
-      <img src="icecream3.jpg" alt="Rainbow Sundae">
-    </div>
-  </section>
-
-  <section id="testimonials">
-    <h2>Customer Love</h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        <p>"Absolutely the creamiest ice cream I've had! The strawberry flavor is divine. 😋"</p>
-        <span>- Anjali R.</span>
-      </div>
-      <div class="testimonial">
-        <p>"Their handcrafted mango flavor took me right back to childhood summers."</p>
-        <span>- Rahul M.</span>
-      </div>
+      <img src="images.jpg" alt="Tropical Cone" data-aos="fade-up">
+      <img src="pexels-photo-1362534.jpeg" alt="Sprinkle Cups" data-aos="fade-up" data-aos-delay="100">
     </div>
   </section>
 
   <section id="contact">
-    <h2>Contact Us</h2>
-<form action="https://formsubmit.co/visheshkmr928@gmail.com" method="POST">
-  <input type="hidden" name="_next" value="https://visheshkumar1111.github.io/icecreamwebsite/thankyou.html">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_subject" value="New message from Sweet Scoop">
-  <input type="hidden" name="_template" value="box">
+    <h2 data-aos="fade-up">Contact Us</h2>
+    <form action="https://formsubmit.co/visheshkmr928@gmail.com" method="POST" data-aos="fade-up">
+      <input type="hidden" name="_next" value="https://visheshkumar1111.github.io/icecreamwebsite/thankyou.html">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New message from Sweet Scoop">
+      <input type="hidden" name="_template" value="box">
 
-  <input type="text" name="name" placeholder="Your Name" required>
-  <input type="email" name="email" placeholder="Your Email" required>
-  <textarea name="message" rows="4" placeholder="Your Message"></textarea>
-  <button type="submit">Send Message</button>
-</form>
-
-
-
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
   <footer>
-    <p>© 2025 Sweet Scoop. Built with love for someone truly sweet 🍧</p>
+    <p>© 2025 Sweet Scoop | Designed with ❤️ from Shimla & Noida</p>
   </footer>
 
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 </body>
 </html>
